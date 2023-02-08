@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Imdb from './Code/Screen/Imdb';
 import Home from './Code/Screen/Home';
 import MovieDetails from './Code/Screen/MovieDetails';
+import DrawerTab from './Code/Screen/DrawerTab';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,10 +17,8 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
-        <Stack.Screen name="Imdb" component={Imdb}/>
-        <Stack.Screen name='Movie Details' component={MovieDetails}/>
-       
+        <Stack.Screen name='DrawerTab' component={DrawerTab}options={{headerShown:false}}  />
+        <Stack.Screen name='Movie Details' component={MovieDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );

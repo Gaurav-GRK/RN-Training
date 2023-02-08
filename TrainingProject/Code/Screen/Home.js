@@ -10,28 +10,8 @@ const Tab = createBottomTabNavigator();
 const Home = ({ navigation }) => {
     return (
         <Tab.Navigator>
-            <Tab.Screen name="Imdb" component={Imdb} options={{
-                headerTitleAlign: 'center',
-                headerTitleStyle: { fontSize: 25 },
-                headerLeft: () => (
-                    <TouchableOpacity>
-                        <View>
-                            <Image source={require('../Assests/Images/back2.png')} style={styles.img1} />
-                        </View>
-                    </TouchableOpacity>
-                ),
-                headerRight: () => (
-                    <TouchableOpacity onPress={() => navigation.navigate('Movie Details')}>
-                        <View>
-                            <Image source={require('../Assests/Images/back.png')} style={styles.img2} />
-                        </View>
-                    </TouchableOpacity>
-                ),
-            }} />
-            <Tab.Screen name="Imdb List" component={ImdbList} options={{
-                headerTitleAlign: 'center',
-                headerTitleStyle: { fontSize: 25 },
-            }} />
+            <Tab.Screen name="IMDB" component={Imdb}   options={{headerShown:false }} />
+            <Tab.Screen name="Imdb List" component={ImdbList} options={{headerShown:false}}  />
         </Tab.Navigator>
     )
 }
