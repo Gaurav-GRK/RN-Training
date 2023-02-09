@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { FlatList } from 'react-native'
-
 const Imdb = ({ navigation }) => {
-
   const [movies, setMovies] = useState([
     {
       id: '1',
@@ -165,7 +163,7 @@ const Imdb = ({ navigation }) => {
 
   const renderCell = ({ item }) => {
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('Movie Details', {item})}>
+      <TouchableOpacity onPress={() => navigation.navigate('MovieDetails', {item})}>
         <View style={styles.itemContainer}>
           <Image source={item.src} style={{ height: 180, width: 120, marginTop: 25 }} />
           <Text style={styles.itemName}>
@@ -185,7 +183,8 @@ const Imdb = ({ navigation }) => {
       numColumns={3}
       style={styles.gridView}
       renderItem={renderCell}
-      keyExtractor={item => item.id} />
+      keyExtractor={item => item.id}
+     />
   )
 }
 
