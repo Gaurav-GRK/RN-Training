@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Image, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import MoviesGrid from './MoviesGrid';
-import {useNavigation} from '@react-navigation/native';
-const ListScreen = ({navigation}) => {
+import { useNavigation } from '@react-navigation/native';
+const ListScreen = ({ navigation }) => {
   const movies = [
     {
       id: '1',
@@ -61,7 +61,7 @@ const ListScreen = ({navigation}) => {
     return (
       <>
         <View style={styles.navBar}>
-          <TouchableOpacity  onPress={() => {
+          <TouchableOpacity onPress={() => {
             navigation.navigate('MoviesGrid')
           }}>
             <Image source={left} style={styles.navIcon}></Image>
@@ -85,7 +85,7 @@ const ListScreen = ({navigation}) => {
 
   return (
     <View>
-      {getNavBar()}
+
       <FlatList
         numColumns={1}
         data={movies}
@@ -108,9 +108,9 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   navBar: {
-    backgroundColor: 'red', 
-    flexDirection: 'row', 
-    paddingVertical: 10, 
+    backgroundColor: 'red',
+    flexDirection: 'row',
+    paddingVertical: 10,
     alignItems: 'center',
     paddingBottom: 20
   }

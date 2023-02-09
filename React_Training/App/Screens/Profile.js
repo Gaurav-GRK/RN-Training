@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import StackNavigator from './App/Navigator/StackNavigator'
 
-const App = () => {
+const Profile = () => {
   return (
-    <StackNavigator />
+    <View>
+      <Text>Profile</Text>
+    </View>
   )
 }
 
-export default App
+export default Profile
 
 const styles = StyleSheet.create({})
