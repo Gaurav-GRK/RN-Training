@@ -1,13 +1,15 @@
+/* eslint-disable semi */
 /* eslint-disable prettier/prettier */
-import { View} from 'react-native';
-import React from 'react';
-import Navigationscreens from './Navigation/Navigationscreens';
-import ImdbHomescreen from './Screen/ImdbHomescreen';
+import React from 'react'
+import DrawerNavigator from './Navigation/Drawernevigation';
+
+import Navigationscreens from './Navigation/Navigationscreens'
 
 const App = () => {
   return (
-    <Navigationscreens/>
-  );
+      <Navigationscreens />
+  )
 };
 
 export default App;
+
