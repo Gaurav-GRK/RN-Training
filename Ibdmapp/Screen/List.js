@@ -3,14 +3,14 @@
 
 import React from 'react';
 
+
 import {
   StyleSheet,
   Text,
   View,
   FlatList,
   Image,
-  TouchableOpacity,
-  Button,
+  TouchableOpacity,Button,
 } from 'react-native';
 import {useState} from 'react';
 
@@ -91,12 +91,7 @@ const List = ({navigation}) => {
   );
 
   const renderItem = ({item}) => (
-    <View
-      style={{
-        backgroundColor: 'white',
-        alignSelf: 'center',
-
-      }}>
+    <View style={{backgroundColor: 'white', alignSelf:'center',backgroundColor:'green'}}>
       <TouchableOpacity>
         <Image
           style={{
@@ -108,8 +103,7 @@ const List = ({navigation}) => {
             marginTop: 10,
             alignSelf: 'center',
           }}
-          source={item.src}
-        />
+          source={item.src} />
         <Text
           style={{
             marginBottom: 10,
@@ -134,17 +128,24 @@ const List = ({navigation}) => {
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
-      <Button title="hello" onPress={() => navigation.navigate('list')} />
+       <Button title="hello" onPress={()=>navigation.navigate('list')}  />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 0,
+    marginTop: 30,
     padding: 2,
   },
-  
+  item: {
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
 });
 
+
+
 export default List;
+
