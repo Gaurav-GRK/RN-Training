@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import { View, Image, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Image, Text, FlatList, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 const MoviesGrid = ({ navigation }) => {
-  const [movies, setMovies] = useState([
+const [movies, setMovies] = useState([
     {
       id: '1',
       title: 'The Shawshank Redemption',
@@ -35,7 +35,8 @@ const MoviesGrid = ({ navigation }) => {
       id: '5',
       title: 'The Godfather',
       image: require('../../Assets/Images/godfather.jpeg'),
-      rating: 8.7
+      rating: 8.7,
+      details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     },
     {
       id: '6',
@@ -62,23 +63,20 @@ const MoviesGrid = ({ navigation }) => {
 
   ]);
 
-  // const getNavBar = () => {
-  //   const left = require('../../Assets/Images/Hamburger.png')
-  //   const right = require('../../Assets/Images/backArrow.png')
-  //   return (
-  //     <>
-  //       <View style={styles.navBar}>
-  //         <TouchableOpacity>
-  //           <Image source={left} style={styles.navIcon}></Image>
-  //         </TouchableOpacity>
-  //         <TouchableOpacity>
-  //           <Image source={right} style={{ ...styles.navIcon, marginLeft: 270 }}></Image>
-  //         </TouchableOpacity>
-  //       </View>
-  //     </>
+  const getNavBar = () => {
+    const left = require('../../Assets/Images/Hamburger.png')
+    return (
+      <>
+        <View style={styles.navBar}>
+          <TouchableOpacity onPress={() => navigation
+            .navigate('DrawerNavigator')}>
+            <Image source={left} style={styles.navIcon}></Image>
+          </TouchableOpacity>
+        </View>
+      </>
 
-  //   )
-  // }
+    )
+  }
 
   const renderMovie = ({ item }) => (
     <TouchableOpacity onPress={() => navigation.navigate('MovieDetails', { item })}>
@@ -94,16 +92,16 @@ const MoviesGrid = ({ navigation }) => {
   );
 
   return (
-    <View>
-
+    <SafeAreaView>
+    
       <FlatList
         numColumns={2}
         data={movies}
         renderItem={renderMovie}
         keyExtractor={item => item.id}
       />
+    </SafeAreaView>
 
-    </View>
   );
 };
 
@@ -122,7 +120,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     flexDirection: 'row',
     paddingVertical: 10,
-    alignItems: 'center',
     paddingBottom: 20
   },
 

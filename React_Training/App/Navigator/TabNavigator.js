@@ -10,7 +10,7 @@ const TabNavigator = () => {
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen name="MoviesGrid" component={MoviesGrid}
         options={{
-
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: () => (
 
@@ -26,7 +26,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen name="List" component={ListScreen}
         options={{
-          headerShown: false,
+          // headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: () => (
 

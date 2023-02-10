@@ -62,7 +62,7 @@ const ListScreen = ({ navigation }) => {
       <>
         <View style={styles.navBar}>
           <TouchableOpacity onPress={() => {
-            navigation.navigate('MoviesGrid')
+            navigation.navigate('DrawerNavigator')
           }}>
             <Image source={left} style={styles.navIcon}></Image>
           </TouchableOpacity>
@@ -85,7 +85,7 @@ const ListScreen = ({ navigation }) => {
 
   return (
     <View>
-
+     {/* {getNavBar()} */}
       <FlatList
         numColumns={1}
         data={movies}
@@ -109,9 +109,7 @@ const styles = StyleSheet.create({
   },
   navBar: {
     backgroundColor: 'red',
-    flexDirection: 'row',
     paddingVertical: 10,
-    alignItems: 'center',
     paddingBottom: 20
   }
 
