@@ -10,7 +10,10 @@ import ImdbHomescreen from '../Screen/ImdbHomescreen';
 import List from '../Screen/List';
 import Bottomnavigation from './Bottomnavigation/Bottomnavigation';
 import Moviesdetail from '../Screen/Moviesdetail';
-import DrawerNavigator from './Drawernevigation';
+
+import Login from '../Prenavigationscreens/Login';
+import Forgotpassword from '../Prenavigationscreens/Forgotpassword';
+import Drawernevigation from './Drawernevigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,14 +21,24 @@ function Navigationscreens({navigation}) {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
+        
         <Stack.Screen
-          name="Drawernavigator"
-          component={DrawerNavigator}
+          name="Login"
+          component={Login}
           options={{headerShown: false}}
         />
-        {/*<Stack.Screen name="List" component={List} />*/}
-
         <Stack.Screen
+          name="Forgotpassword"
+          component={Forgotpassword}
+          options={{headerShown: true}}
+        />
+         <Stack.Screen
+          name="Drawernevigation"
+          component={Drawernevigation}
+          options={{headerShown: false}}
+          />
+          <Stack.Screen
           name="Moviesdetail"
           component={Moviesdetail}
           options={{

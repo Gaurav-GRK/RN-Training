@@ -14,7 +14,7 @@ import Profileuser from '../Screen/Profileuser';
 
 const Drawer = createDrawerNavigator();
 
-export default function DrawerNavigator({navigation}) {
+export default function Drawernevigation({navigation}) {
   return (
     /*<NavigationContainer>*/
     <Drawer.Navigator

@@ -1,12 +1,16 @@
 /* eslint-disable semi */
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import DrawerNavigator from './Navigation/Drawernevigation';
-
 import Navigationscreens from './Navigation/Navigationscreens'
+
+
+
+
+
 
 const App = () => {
   return (
+
       <Navigationscreens />
   )
 };
