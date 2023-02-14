@@ -1,70 +1,68 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
-  Button,
   View,
   Text,
-  Picker,
   Dimensions,
-  SafeAreaView,
   ScrollView,
-  FlatList,
   StyleSheet,
   TouchableOpacity,
-  Modal,
   Image,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import Animated from 'react-native-reanimated';
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 function CustomDrawer() {
   const nav = useNavigation();
-
   const logoutView = () => {
     return (
       <View styles={styles.logoutView}>
-        <TouchableOpacity
-          style={styles.logoutButton}>
+        <TouchableOpacity style={styles.logoutButton}>
           <Image
             source={require('../Assets/Images/exit.png')}
             style={styles.rowIcon}
-            resizeMode='contain'
+            resizeMode="contain"
           />
-          <Text style={styles.logoutText}>
-            Logout
-          </Text>
+          <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </View>
     );
   };
 
-
   const getRowsContainer = () => {
     return (
-      <View style={{ marginTop: 40, marginHorizontal: 10 }}>
-        {getRow()}
-      </View>
+      <View style={{marginTop: 40, marginHorizontal: 10}}>{getRow()}</View>
     );
   };
 
   const getRow = () => {
     return (
       <>
-        <TouchableOpacity style={styles.rowContainer} onPress={() => {
-          nav.navigate('DrawerNavigator')
-        }}>
+        <TouchableOpacity
+          style={styles.rowContainer}
+          onPress={() => {
+            nav.navigate('DrawerNavigator');
+          }}>
           <View style={styles.rowContainer}>
             <View style={styles.rowSubContainer}>
-              <Image source={require('../Assets/Images/home.png')} style={styles.rowIcon} resizeMode='contain'></Image>
+              <Image
+                source={require('../Assets/Images/home.png')}
+                style={styles.rowIcon}
+                resizeMode="contain"></Image>
               <Text style={styles.rowText}>Homescreen</Text>
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.rowContainer} onPress={() => {
-          nav.navigate('ProfileView')
-        }}>
+        <TouchableOpacity
+          style={styles.rowContainer}
+          onPress={() => {
+            nav.navigate('ProfileView');
+          }}>
           <View style={styles.rowContainer}>
             <View style={styles.rowSubContainer}>
-              <Image source={require('../Assets/Images/profile-user.png')} style={styles.rowIcon} resizeMode='contain'></Image>
+              <Image
+                source={require('../Assets/Images/profile-user.png')}
+                style={styles.rowIcon}
+                resizeMode="contain"></Image>
               <Text style={styles.rowText}>Profile</Text>
             </View>
           </View>
@@ -79,12 +77,17 @@ function CustomDrawer() {
           </View>
         </View>
       </TouchableOpacity> */}
-        <TouchableOpacity style={styles.rowContainer} onPress={() => {
-          nav.navigate('Watchlist')
-        }}>
+        <TouchableOpacity
+          style={styles.rowContainer}
+          onPress={() => {
+            nav.navigate('Watchlist');
+          }}>
           <View style={styles.rowContainer}>
             <View style={styles.rowSubContainer}>
-              <Image source={require('../Assets/Images/bookmark.png')} style={styles.rowIcon} resizeMode='contain'></Image>
+              <Image
+                source={require('../Assets/Images/bookmark.png')}
+                style={styles.rowIcon}
+                resizeMode="contain"></Image>
               <Text style={styles.rowText}>Watchlist</Text>
             </View>
           </View>
@@ -94,11 +97,9 @@ function CustomDrawer() {
   };
 
   return (
-    <Animated.View >
+    <Animated.View>
       <View style={styles.subContainer}>
-        <ScrollView>
-          {getRowsContainer()}
-        </ScrollView>
+        <ScrollView>{getRowsContainer()}</ScrollView>
         {logoutView()}
       </View>
     </Animated.View>
@@ -108,7 +109,7 @@ function CustomDrawer() {
 const styles = StyleSheet.create({
   subContainer: {
     height: '100%',
-    width: width * 0.80,
+    width: width * 0.8,
     backgroundColor: '#ffffff',
   },
   rowIcon: {
@@ -162,6 +163,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontWeight: '500',
     color: 'black',
-  }
+  },
 });
-export default CustomDrawer
+export default CustomDrawer;
