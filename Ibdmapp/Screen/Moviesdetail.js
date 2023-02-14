@@ -1,7 +1,9 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable no-dupe-keys */
 /* eslint-disable semi */
 /* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable no-lone-blocks */
+
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 
@@ -30,7 +32,7 @@ const Moviesdetail = (props) => {
             style={styles.Imagestyle
             }
             source={src}
-          />
+           ></Image>
           <Text
             style={styles.ratingstyle}>
             {rating}
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
     marginBottom:0,
-    height:'100%'
+    height:'100%',
   },
   Titelstyle: {
 

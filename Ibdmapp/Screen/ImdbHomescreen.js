@@ -121,7 +121,7 @@ const ImdbHomescreen = ({navigation}) => {
 
   const renderItem = ({item}) => (
     <View style={{backgroundColor: 'white'}}>
-      <TouchableOpacity onPress={()=> navigation.navigate('Moviesdetail',{item})}>
+      <TouchableOpacity onPress={()=>navigation.navigate('Moviesdetail',{item})}>{/*navigation.navigate('Moviesdetail',{item})*/}
           <Image
           style={{
             height: 160,

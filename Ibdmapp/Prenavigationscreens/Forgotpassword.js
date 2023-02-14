@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 import {
   View,
@@ -11,12 +12,12 @@ import {
 import React, {useState} from 'react';
 import {SafeAreaView, withSafeAreaInsets} from 'react-native-safe-area-context';
 
-const Forgotpassword = (navigation) => {
+const Forgotpassword = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
-  
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -34,6 +35,7 @@ const Forgotpassword = (navigation) => {
               style={styles}
               title="Send"
               color="green"
+              onPress={()=>  navigation.navigate('Drawernevigation')}
 
             />
             <Text>{message}</Text>

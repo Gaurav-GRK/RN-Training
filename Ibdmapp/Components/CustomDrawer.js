@@ -1,15 +1,19 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable prettier/prettier */
-/* eslint-disable react/jsx-no-undef */
+
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React,{useContext} from 'react';
+
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import { AuthContext } from '../context/AuthContext';
 
 const CustomDrawer = props => {
+   const {logout} = useContext(AuthContext);
   return (
     <>
       <DrawerContentScrollView
@@ -30,12 +34,12 @@ const CustomDrawer = props => {
         </View>
       </DrawerContentScrollView>
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=> {logout();}}>
           <View style={{flexDirection: 'row'}}>
             <Image
               source={require('../assets/Logout.jpg')}
               style={styles.imagestyle}></Image>
-            <Text style={styles.logtext}>Logout</Text>
+            <Text style={styles.logtext}>Signout</Text>
           </View>
         </TouchableOpacity>
       </View>

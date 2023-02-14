@@ -4,19 +4,23 @@
 
 /* eslint-disable prettier/prettier */
 import * as React from 'react';
+import {Component} from 'react';
 import {Button, View, Image, Text} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Bottomnavigation from './Bottomnavigation/Bottomnavigation';
+import {NavigationContainer} from '@react-navigation/native';
 
 import About from '../Screen/About';
 import CustomDrawer from '../Components/CustomDrawer';
 import Profileuser from '../Screen/Profileuser';
 
+
 const Drawer = createDrawerNavigator();
 
 export default function Drawernevigation({navigation}) {
+
   return (
-    /*<NavigationContainer>*/
+   /*<NavigationContainer>*/
     <Drawer.Navigator
       initialRouteName="Tabnavigator"
       drawerContent={props => <CustomDrawer {...props} />}>
@@ -24,7 +28,7 @@ export default function Drawernevigation({navigation}) {
         name="Tapnavigator"
         component={Bottomnavigation}
         options={{
-          title: 'IMDB',
+          headerTitle:'IMDB',
           headerStyle: {backgroundColor: '#3B4C5C'},
           headerTitleStyle: {color: 'white'},
           headerTintColor: 'white',
@@ -72,6 +76,6 @@ export default function Drawernevigation({navigation}) {
         }}
       />
     </Drawer.Navigator>
-    /*</NavigationContainer>*/
+   /*</NavigationContainer>*/
   );
 }

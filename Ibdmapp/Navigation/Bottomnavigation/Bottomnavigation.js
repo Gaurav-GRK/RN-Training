@@ -1,19 +1,19 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react/self-closing-comp */
+
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable prettier/prettier */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-import {View, Image, TouchableOpacity} from 'react-native';
+import {View, Image} from 'react-native';
 
 import ImdbHomescreen from '../../Screen/ImdbHomescreen';
 import List from '../../Screen/List';
 
 const Tab = createBottomTabNavigator();
 
-function Bottomnavigation({navigation}) {
+function Bottomnavigation({route ,navigation}) {
+
   return (
     <Tab.Navigator
       initialRouteName="ImdbHomescreen"
