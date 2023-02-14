@@ -1,10 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image } from 'react-native'
-import React, { useState } from 'react'
-
-
-const Login = ({navigation}) => {
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../../Navigation/Context'
+const Login = ({navigation},props) => {
+    
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    const {login} =useContext(AuthContext)
     return (
         <View style={styles.container}>
             <View style={styles.container1}>
@@ -32,7 +33,7 @@ const Login = ({navigation}) => {
                         Forgot Password*
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('DrawerTab')}>
+                <TouchableOpacity style={styles.btn} onPress={()=>{login()}}>
                     <Text style={styles.done}>
                         Login
                     </Text>

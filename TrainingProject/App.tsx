@@ -1,11 +1,11 @@
-
 import * as React from 'react';
-import { createSwitchNavigator,createAppContainer} from 'react-navigation';
-import StackNavigator from './Code/Navigation/StackNavigator';
+import { AuthProvider } from './Code/Navigation/Context';
+import StackNav from './Code/Navigation/StackNav';
 function App() {
   return (
-    
-    <StackNavigator />
+    <AuthProvider>
+      <StackNav/>
+    </AuthProvider>
   );
 }
 

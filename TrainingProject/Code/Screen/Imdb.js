@@ -163,7 +163,7 @@ const Imdb = ({ navigation }) => {
 
   const renderCell = ({ item }) => {
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('MovieDetails', {item})}>
+      <TouchableOpacity onPress={() =>navigation.navigate('MovieDetails', {item})}>
         <View style={styles.itemContainer}>
           <Image source={item.src} style={{ height: 180, width: 120, marginTop: 25 }} />
           <Text style={styles.itemName}>
