@@ -1,5 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import DogBreedsScreen from '../Screens/DogScreen';
 import ListScreen from '../Screens/MoviesScene/ListScreen';
 import MoviesGrid from '../Screens/MoviesScene/MoviesGrid';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -32,6 +33,20 @@ const TabNavigator = () => {
               resizeMode="contain"
               style={styles.bottomTabIcon1}
               source={require('../Assets/Images/list.png')}></Image>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Doglist"
+        component={DogBreedsScreen}
+        options={{
+          // headerShown: false,
+          tabBarShowLabel: false,
+          tabBarIcon: () => (
+            <Image
+              resizeMode="contain"
+              style={styles.bottomTabIcon1}
+              source={require('../Assets/Images/dog_logo.png')}></Image>
           ),
         }}
       />

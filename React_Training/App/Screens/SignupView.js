@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 
 const SignUpPage = () => {
@@ -56,11 +56,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
- 
+
   cardContainer: {
     backgroundColor: 'white',
     padding: 38,
-   // paddingHorizontal:63,
+    // paddingHorizontal:63,
     borderRadius: 10,
     shadowColor: 'black',
     shadowOffset: {

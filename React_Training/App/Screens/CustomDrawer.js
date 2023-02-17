@@ -1,21 +1,62 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useCallback, useMemo } from 'react';
 import {
   View,
   Text,
   Dimensions,
-  ScrollView,
+  FlatList,
   StyleSheet,
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import Animated from 'react-native-reanimated';
-const {width, height} = Dimensions.get('window');
-function CustomDrawer() {
+
+const { width, height } = Dimensions.get('window');
+
+const data = [
+  {
+    id: '1',
+    icon: require('../Assets/Images/home.png'),
+    text: 'Homescreen',
+    screen: 'DrawerNavigator',
+  },
+  {
+    id: '2',
+    icon: require('../Assets/Images/profile-user.png'),
+    text: 'Profile',
+    screen: 'ProfileView',
+  },
+  {
+    id: '3',
+    icon: require('../Assets/Images/bookmark.png'),
+    text: 'Watchlist',
+    screen: 'Watchlist',
+  },
+];
+
+const Row = ({ item }) => {
   const nav = useNavigation();
-  const logoutView = () => {
+
+  const handlePress = useCallback(() => {
+    nav.navigate(item.screen);
+  }, [nav, item.screen]);
+
+  return (
+    <TouchableOpacity style={styles.rowContainer} onPress={handlePress}>
+      <View style={styles.rowSubContainer}>
+        <Image source={item.icon} style={styles.rowIcon} resizeMode="contain" />
+        <Text style={styles.rowText}>{item.text}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+const CustomDrawer = () => {
+  const nav = useNavigation();
+
+  const logoutView = useMemo(() => {
     return (
-      <View styles={styles.logoutView}>
+      <View style={styles.logoutView}>
         <TouchableOpacity style={styles.logoutButton}>
           <Image
             source={require('../Assets/Images/exit.png')}
@@ -26,85 +67,26 @@ function CustomDrawer() {
         </TouchableOpacity>
       </View>
     );
-  };
+  }, []);
 
-  const getRowsContainer = () => {
-    return (
-      <View style={{marginTop: 40, marginHorizontal: 10}}>{getRow()}</View>
-    );
-  };
+  const renderItem = useCallback(({ item }) => <Row item={item} />, []);
 
-  const getRow = () => {
-    return (
-      <>
-        <TouchableOpacity
-          style={styles.rowContainer}
-          onPress={() => {
-            nav.navigate('DrawerNavigator');
-          }}>
-          <View style={styles.rowContainer}>
-            <View style={styles.rowSubContainer}>
-              <Image
-                source={require('../Assets/Images/home.png')}
-                style={styles.rowIcon}
-                resizeMode="contain"></Image>
-              <Text style={styles.rowText}>Homescreen</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.rowContainer}
-          onPress={() => {
-            nav.navigate('ProfileView');
-          }}>
-          <View style={styles.rowContainer}>
-            <View style={styles.rowSubContainer}>
-              <Image
-                source={require('../Assets/Images/profile-user.png')}
-                style={styles.rowIcon}
-                resizeMode="contain"></Image>
-              <Text style={styles.rowText}>Profile</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-        {/* <TouchableOpacity style={styles.rowContainer} onPress={() => {
-        nav.navigate('ListScreen')
-      }}>
-        <View style={styles.rowContainer}>
-          <View style={styles.rowSubContainer}>
-            <Image source={require('../Assets/Images/like.png')} style={styles.rowIcon} resizeMode='contain'></Image>
-            <Text style={styles.rowText}>Recommendation</Text>
-          </View>
-        </View>
-      </TouchableOpacity> */}
-        <TouchableOpacity
-          style={styles.rowContainer}
-          onPress={() => {
-            nav.navigate('Watchlist');
-          }}>
-          <View style={styles.rowContainer}>
-            <View style={styles.rowSubContainer}>
-              <Image
-                source={require('../Assets/Images/bookmark.png')}
-                style={styles.rowIcon}
-                resizeMode="contain"></Image>
-              <Text style={styles.rowText}>Watchlist</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      </>
-    );
-  };
+  const keyExtractor = useCallback((item) => item.id, []);
 
   return (
     <Animated.View>
       <View style={styles.subContainer}>
-        <ScrollView>{getRowsContainer()}</ScrollView>
-        {logoutView()}
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          contentContainerStyle={{ marginTop: 40, marginHorizontal: 10 }}
+        />
+        {logoutView}
       </View>
     </Animated.View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   subContainer: {
