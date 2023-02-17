@@ -3,14 +3,14 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable keyword-spacing */
 /* eslint-disable react/self-closing-comp */
-
 /* eslint-disable prettier/prettier */
+
+
 import {  View,ActivityIndicator } from 'react-native';
 import React, { useContext }from 'react';
 import AuthStack from './AuthStack';
 
-
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../Src/Context/AuthContext';
 import Appstack from './Appstack';
 import {NavigationContainer} from '@react-navigation/native';
 

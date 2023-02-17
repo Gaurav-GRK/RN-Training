@@ -1,26 +1,27 @@
+/* eslint-disable no-undef */
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable prettier/prettier */
 
 /* eslint-disable prettier/prettier */
 import * as React from 'react';
-import {Component} from 'react';
-import {Button, View, Image, Text} from 'react-native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import Bottomnavigation from './Bottomnavigation/Bottomnavigation';
-import {NavigationContainer} from '@react-navigation/native';
 
-import About from '../Screen/About';
-import CustomDrawer from '../Components/CustomDrawer';
-import Profileuser from '../Screen/Profileuser';
+import { Image } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import About from '../Src/Screen/About';
+import Profileuser from '../Src/Screen/Profileuser';
+import CustomDrawer from '../Src/Components/CustomDrawer';
+import Bottomnavigation from '../Navigation/Bottomnavigation/Bottomnavigation';
+import DogsList from '../Src/Screen/DogsList';
+
 
 
 const Drawer = createDrawerNavigator();
 
-export default function Drawernevigation({navigation}) {
+export default function Drawernevigation({ navigation }) {
 
   return (
-   /*<NavigationContainer>*/
     <Drawer.Navigator
       initialRouteName="Tabnavigator"
       drawerContent={props => <CustomDrawer {...props} />}>
@@ -28,9 +29,9 @@ export default function Drawernevigation({navigation}) {
         name="Tapnavigator"
         component={Bottomnavigation}
         options={{
-          headerTitle:'IMDB',
-          headerStyle: {backgroundColor: '#3B4C5C'},
-          headerTitleStyle: {color: 'white'},
+          headerTitle: 'IMDB',
+          headerStyle: { backgroundColor: '#3B4C5C' },
+          headerTitleStyle: { color: 'white' },
           headerTintColor: 'white',
           drawerLabel: 'Home',
           drawerActiveBackgroundColor: 'blue',
@@ -39,7 +40,7 @@ export default function Drawernevigation({navigation}) {
           drawerIcon: () => (
             <Image
               source={require('../assets/Home.jpg')}
-              style={{height: 30, width: 30}}
+              style={{ height: 30, width: 30 }}
             />
           ),
         }}
@@ -55,7 +56,7 @@ export default function Drawernevigation({navigation}) {
           drawerIcon: () => (
             <Image
               source={require('../assets/Profile.jpg')}
-              style={{height: 30, width: 30}}
+              style={{ height: 30, width: 30 }}
             />
           ),
         }}
@@ -70,12 +71,12 @@ export default function Drawernevigation({navigation}) {
           drawerIcon: () => (
             <Image
               source={require('../assets/About.jpg')}
-              style={{height: 30, width: 30}}
+              style={{ height: 30, width: 30 }}
             />
           ),
         }}
       />
     </Drawer.Navigator>
-   /*</NavigationContainer>*/
+
   );
 }

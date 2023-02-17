@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import Drawernevigation from './Drawernevigation';
-import Moviesdetail from '../Screen/Moviesdetail';
+import Moviesdetail from '../Src/Screen/Moviesdetail';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 
 const Stack = createNativeStackNavigator();
 

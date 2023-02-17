@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
 
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './Src/Context/AuthContext';
 import AppNav from './Navigation/AppNav';
 const App = () => {
   return (

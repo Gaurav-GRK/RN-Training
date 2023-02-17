@@ -6,9 +6,11 @@
 /* eslint-disable prettier/prettier */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, Image} from 'react-native';
+import DogsList1 from '../../Src/Screen/DogsList1';
+import ImdbHomescreen from '../../Src/Screen/ImdbHomescreen';
+import List from '../../Src/Screen/List';
 
-import ImdbHomescreen from '../../Screen/ImdbHomescreen';
-import List from '../../Screen/List';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +37,7 @@ function Bottomnavigation({route ,navigation}) {
                   alignContent: 'center',
                   borderColor: 'black',
                 }}
-                source={require('../../assets/Moviesimages/a2.jpg')}
+                source={require('../../assets/TabbarIcons/Home.png')}
               />
             </View>
           ),
@@ -56,7 +58,28 @@ function Bottomnavigation({route ,navigation}) {
                   alignContent: 'center',
                   borderColor: 'black',
                 }}
-                source={require('../../assets/Moviesimages/a2.jpg')}
+                source={require('../../assets/TabbarIcons/MovieList.png')}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="DogsList1"
+        component={DogsList1}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'List of Dogs',
+          tabBarIcon: ({}) => (
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+              <Image
+                style={{
+                  width: 30,
+                  height: 25,
+                  alignContent: 'center',
+                  borderColor: 'black',
+                }}
+                source={require('../../assets/TabbarIcons/Dogs.png')}
               />
             </View>
           ),
