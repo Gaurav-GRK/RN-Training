@@ -14,5 +14,4 @@ import PreLoginScreens from './PreLoginScreens'
   )
 }
 export default StackNav
-
 const styles = StyleSheet.create({})

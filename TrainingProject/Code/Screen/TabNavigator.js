@@ -3,10 +3,9 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Imdb from './Imdb';
 import ImdbList from './ImdbList';
+import DogsList from './DogsList';
 
 const Tab = createBottomTabNavigator();
-
-
 const Home = () => {
     return (
         <Tab.Navigator>
@@ -26,10 +25,17 @@ const Home = () => {
                     </View>
                 )
             }} />
+            <Tab.Screen name='DogsList' component={DogsList} options={{
+                headerShown:false,
+                tabBarIcon: () => (
+                    <View>
+                        <Image source={require('../Assests/Images/list.jpg')} style={{ height: 30, width: 30 }} />
+                    </View>
+                )
+            }}/>
         </Tab.Navigator>
     )
 }
-
 export default Home
 
 const styles = StyleSheet.create({

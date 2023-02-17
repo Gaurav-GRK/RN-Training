@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
 const ForgotPassword = () => {
+    const[email,setEmail]=useState('')
     return (
         <View >
             <Text style={styles.forgot}>
@@ -17,6 +18,7 @@ const ForgotPassword = () => {
             <TextInput
                 style={styles.input}
                 placeholder='Email Address'
+                placeholderTextColor={'grey'}
                 onChangeText={(Data) => setEmail(Data)}
             />
             <TouchableOpacity style={styles.btn} >

@@ -1,0 +1,1 @@
+export const myAxiosGetRequest='https://dog.ceo/api/breeds/list/all'

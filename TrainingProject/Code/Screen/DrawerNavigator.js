@@ -15,7 +15,7 @@ export default function DrawerTab() {
       <Drawer.Navigator drawerContent={props => <CustomDrawer{...props} />}>
         <Drawer.Screen name='Imdb' component={Home} options={{
           headerTitleAlign: 'center',
-          headerTitleStyle: { fontSize: 25 },
+          headerTitleStyle: { fontSize: 25,color:'#3B4C5C' },
           headerStyle: { backgroundColor: '#3B4C5C' },
           headerTintColor: 'white',
           headerRight: () => (

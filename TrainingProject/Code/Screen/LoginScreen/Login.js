@@ -18,6 +18,7 @@ const Login = ({navigation},props) => {
                 <TextInput
                     style={styles.input}
                     placeholder='Email Address'
+                    placeholderTextColor={'grey'}
                     onChangeText={(Data) => setEmail(Data)}
                 />
                 <Text style={styles.email}>
@@ -26,6 +27,7 @@ const Login = ({navigation},props) => {
                 <TextInput
                     style={styles.input}
                     placeholder='Password'
+                    placeholderTextColor={'grey'}
                     onChangeText={(Data) => setPassword(Data)}
                 />
                 <TouchableOpacity onPress={()=>navigation.navigate('ForgotPassword')}>
