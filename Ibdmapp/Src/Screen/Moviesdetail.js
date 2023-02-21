@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   detailstyle: {
-    fontWeight: 'bold',
+    fontWeight: 'light',
     fontSize: 16,
     marginLeft: 10,
     marginRight: 5,
-    color: '#E6E6E6',
+    color: 'black',
   },
   ratingstyle: {
 

@@ -40,7 +40,7 @@ const Forgotpassword = ({ navigation }) => {
             </View>
             <TouchableOpacity
               style={styles.botton}
-              onPress={() =>navigation.navigate('DogsList1')}><Text
+              onPress={() =>navigation.navigate('Home')}><Text
               style={styles.bottonText}>Send</Text>
             </TouchableOpacity>
           </View>
@@ -91,16 +91,16 @@ const styles = StyleSheet.create({
   textInput: {
     padding: 10,
     marginLeft: 0,
-    borderBottomColor: 'white',
-    borderBottomWidth: 10,
-    alignSelf:'center',
+    width:260,
+    borderWidth:1,
+    marginTop:10,
   },
 
   botton: {
 
     backgroundColor: '#FF4500',
     padding: 10,
-    marginTop: 20,
+    marginTop: 10,
     borderRadius: 10,
     width: '80%',
   },

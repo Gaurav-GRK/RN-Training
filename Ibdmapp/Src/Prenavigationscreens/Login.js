@@ -1,9 +1,11 @@
+/* eslint-disable no-dupe-keys */
+/* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable prettier/prettier */
-
 /* eslint-disable prettier/prettier */
-/* eslint-disable no-unused-vars */
+
 import {
   View,
   Text,
@@ -30,10 +32,10 @@ const Login = ({ navigation },props) => {
 
       <View style={styles.cardStyle}>
       <View>
-        <Image source={require('../../assets/Imdblogo.png')} ></Image>
+        <Image source={require('../../assets/Imdblogo.png')} style={{}}></Image>
       </View>
-        
           <Text style={styles.text}> LogIn </Text>
+          <View style={{alignItems:'flex-start'}}>
             <TextInput
               style={styles.textInput}
               placeholder="Email Address"
@@ -49,22 +51,24 @@ const Login = ({ navigation },props) => {
               secureTextEntry={true}
               onChangeText={actualdata => setPassword(actualdata)}
             />
+            </View>
             <TouchableOpacity style={styles.button}
               color="blue"
               onPress={() => { login();}} >
                 <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
-          <Text style={styles.text3}>Don't have remember Password?</Text>
+          <Text style={styles}>Don't have remember Password?</Text>
           <TouchableOpacity styles={styles.forgetStyle} onPress={() => navigation.navigate('Forgotpassword')}>
             <Text style={styles}>  Forgot Password </Text>
           </TouchableOpacity>
-        </>
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
 };
 
 export default Login;
+
 const styles = StyleSheet.create({
   cardStyle:{
      backgroundColor: 'white',
@@ -82,16 +86,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  text: {
+
+    text: {
     fontSize: 50,
     textAlign: 'center',
     color: 'black',
     fontWeight: 'bold',
     backgroundColor: 'white',
+    marginBottom:5,
   },
   textInput: {
     padding: 10,
+    width:260,
+    paddingRight:0,
+    marginBottom:10,
     marginLeft: 0,
+    borderWidth:1,
 
   },
    background: {
@@ -102,7 +112,8 @@ const styles = StyleSheet.create({
    button: {
     backgroundColor: '#FF4500',
     padding: 10,
-    marginTop: 20,
+    marginTop: 15,
+    marginBottom:10,
     borderRadius: 10,
     width: '80%',
   },
@@ -124,4 +135,5 @@ const styles = StyleSheet.create({
     marginTop: 20,
 },
 },
+
 );
