@@ -8,6 +8,7 @@ import PreLoginScreens from './PreLoginScreens'
  function StackNav() {
     const {isLogin}=useContext(AuthContext)
   return (
+    
    <NavigationContainer>
         {isLogin!==null?<PostLogoutScreens/>:<PreLoginScreens/>}
    </NavigationContainer>

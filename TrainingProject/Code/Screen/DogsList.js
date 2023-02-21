@@ -9,7 +9,7 @@ const DogBreedsScreen = () => {
     try {
       const res = await axios.get(myAxiosGetRequest)
       const data = res.data.message
-      setListDogData(Object.keys(data).map(listDogData => ({ name: listDogData, subBreeds: data[listDogData]})))
+      setListDogData(Object.keys(data).map(listDogData => ({ name: listDogData, subBreeds: data[listDogData] })))
     } catch (error) {
       console.log(error);
     }
@@ -33,7 +33,7 @@ const DogBreedsScreen = () => {
           Dog SubBreed:
         </Text>
         {item.subBreeds.map(subBreed => (
-          <Text key={subBreed}style={styles.dogbreed}>
+          <Text key={subBreed} style={styles.dogbreed}>
             &bull; {subBreed}
           </Text>
         ))}
@@ -81,32 +81,32 @@ const styles = StyleSheet.create({
     margin: 12
   },
   title: {
-    marginHorizontal:12,
-    fontSize:20,
-    color:'green'
+    marginHorizontal: 12,
+    fontSize: 20,
+    color: 'green'
   },
   name: {
     fontSize: 25,
     color: 'black',
     fontWeight: '500'
   },
-  container1:{
-    flexDirection:'row',
-    marginLeft:30
+  container1: {
+    flexDirection: 'row',
+    marginLeft: 30
   },
-  dogname:{
-    fontSize:20,
-    color:'black'
+  dogname: {
+    fontSize: 20,
+    color: 'black'
   },
-  dogbreed:{
-    marginLeft:150,
-    fontSize:16,
-    color:'red'
+  dogbreed: {
+    marginLeft: 150,
+    fontSize: 16,
+    color: 'red'
   },
-  breedname:{
-    fontSize:18,
-    color:'black',
-    marginLeft:30,
-    marginTop:12
+  breedname: {
+    fontSize: 18,
+    color: 'black',
+    marginLeft: 30,
+    marginTop: 12
   }
 })

@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Imdb from './Imdb';
 import ImdbList from './ImdbList';
 import DogsList from './DogsList';
+import ListDog from '../Screen/ListDog'
 
 const Tab = createBottomTabNavigator();
 const Home = () => {
@@ -25,7 +26,7 @@ const Home = () => {
                     </View>
                 )
             }} />
-            <Tab.Screen name='DogsList' component={DogsList} options={{
+            <Tab.Screen name='DogsList' component={ListDog} options={{
                 headerShown:false,
                 tabBarIcon: () => (
                     <View>

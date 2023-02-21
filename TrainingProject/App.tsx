@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { AuthProvider } from './Code/Navigation/Context';
-import StackNav from './Code/Navigation/StackNav';
+import {Provider} from 'react-redux';
+import { store } from './Code/Redux/Store';
+import Routes from './Code/Navigation/Routes';
+
 function App() {
   return (
-    <AuthProvider>
-      <StackNav/>
-    </AuthProvider>
+    <Provider store={store}>
+      <Routes/>
+    </Provider>
   );
 }
 
