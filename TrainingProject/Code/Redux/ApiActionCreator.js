@@ -5,7 +5,7 @@ const ApiActionCreator = (url) => (dispatch) => {
   dispatch(fetchData());
   return new Promise(() => {
     axios
-      .get(url)
+      .get('https://dog.ceo/api/breeds/list/all')
       .then((response) => {
         const data = response.data.message
         dispatch(fetchSuccess(Object.keys(data).map(listDogData => ({ name: listDogData,subBreeds: data[listDogData]}))));

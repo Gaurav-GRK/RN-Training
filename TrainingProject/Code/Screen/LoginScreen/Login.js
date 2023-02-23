@@ -1,11 +1,29 @@
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image, Alert } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../Navigation/Context'
-const Login = ({navigation},props) => {
-    
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    const {login} =useContext(AuthContext)
+import { useDispatch } from 'react-redux'
+import axios from 'axios'
+import { connect } from 'react-redux'
+import { LoginAction } from '../../Redux/Login/LoginAction'
+function Login({ navigation,userEmail }) {
+    const dispatch=useDispatch()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const { login } = useContext(AuthContext)
+    const onLogin = () => {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (re.test(String(email).toLowerCase())) {
+            if (password.length > 0) {
+                dispatch(LoginAction(email, password, () => {
+                   {login()}
+                }))
+            } else {
+                Alert.alert('Please enter Password')
+            }
+        } else {
+            email.length == 0 ? Alert.alert('Please enter email') : Alert.alert('Please enter valid email')
+        }
+    }
     return (
         <View style={styles.container}>
             <View style={styles.container1}>
@@ -30,12 +48,12 @@ const Login = ({navigation},props) => {
                     placeholderTextColor={'grey'}
                     onChangeText={(Data) => setPassword(Data)}
                 />
-                <TouchableOpacity onPress={()=>navigation.navigate('ForgotPassword')}>
+                <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
                     <Text style={styles.forgot}>
                         Forgot Password*
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.btn} onPress={()=>{login()}}>
+                <TouchableOpacity style={styles.btn} onPress={() => { onLogin() }}>
                     <Text style={styles.done}>
                         Login
                     </Text>
@@ -76,7 +94,7 @@ const Login = ({navigation},props) => {
     )
 }
 
-export default Login
+
 
 const styles = StyleSheet.create({
     container: {
@@ -197,3 +215,15 @@ const styles = StyleSheet.create({
         color: 'black'
     }
 })
+export default Login
+/*const mapStateToProps=(state)=>{
+    return{
+        userEmail:state.data
+    }
+}
+const mapDisPatchToProps = (dispatch) => {
+    return {
+        LoginAction: (email, password) => dispatch(LoginAction(email, password)),
+    }
+}
+export default connect(mapStateToProps,mapDisPatchToProps)(Login)*/

@@ -12,7 +12,7 @@ const ListDog = () => {
 
   useEffect(() => {
 
-    dispatch(apiCall(myAxiosGetRequest));
+    dispatch(apiCall());
 
   }, []);
   const renderList = ({ item }) => (
