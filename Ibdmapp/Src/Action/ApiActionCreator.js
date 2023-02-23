@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
 import {fetchData, fetchSuccess, fetchError} from './ApiAction';

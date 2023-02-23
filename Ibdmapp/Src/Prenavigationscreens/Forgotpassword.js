@@ -26,7 +26,7 @@ const Forgotpassword = ({ navigation }) => {
     <SafeAreaView>
       <View style={styles.card}>
        <View>
-        <Image source={require('../../assets/Imdblogo.png')} styles={{height:10,width:40}} ></Image>
+        <Image source={require('../../assets/Imdblogo.png')} styles={{height:100,width:250,borderRadius:20}} ></Image>
        </View>
         <View style={styles.container1}>
           <Text style={styles.text}>Forgot Password</Text>
@@ -40,7 +40,7 @@ const Forgotpassword = ({ navigation }) => {
             </View>
             <TouchableOpacity
               style={styles.botton}
-              onPress={() =>navigation.navigate('Home')}><Text
+              onPress={() =>navigation.navigate('DogsList1')}><Text
               style={styles.bottonText}>Send</Text>
             </TouchableOpacity>
           </View>

@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 import React, {Children, createContext, useState} from 'react';
+import { loginAction } from '../Login/LoginAction';
 
 export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
@@ -11,8 +12,7 @@ export const AuthProvider = ({children}) => {
     setUserToken('hfghgjh');
     setIsLoding(false);
   };
-
-  const logout = () => {
+    const logout = () => {
     setUserToken('null');
     setIsLoding(false);
   };

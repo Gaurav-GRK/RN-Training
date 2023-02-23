@@ -6,7 +6,7 @@
 /* eslint-disable prettier/prettier */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, Image} from 'react-native';
-import DogsList1 from '../../Src/Screen/DogsList1';
+import Home from '../../Src/Screen/Home';
 import ImdbHomescreen from '../../Src/Screen/ImdbHomescreen';
 import List from '../../Src/Screen/List';
 
@@ -65,8 +65,8 @@ function Bottomnavigation({route ,navigation}) {
         }}
       />
       <Tab.Screen
-        name="DogsList1"
-        component={DogsList1}
+        name="DogsList"
+        component={Home}
         options={{
           headerShown: false,
           tabBarLabel: 'List of Dogs',
