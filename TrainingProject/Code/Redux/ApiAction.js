@@ -12,3 +12,5 @@ export const fetchData = () => ({
     type: ACTION_TYPES.API_ERROR,
     payload: error,
   });
+
+  

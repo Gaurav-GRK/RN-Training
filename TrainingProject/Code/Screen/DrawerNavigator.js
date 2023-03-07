@@ -18,13 +18,6 @@ export default function DrawerTab() {
           headerTitleStyle: { fontSize: 25,color:'#3B4C5C' },
           headerStyle: { backgroundColor: '#3B4C5C' },
           headerTintColor: 'white',
-          headerRight: () => (
-            <View>
-              <TouchableOpacity>
-                <Image source={require('../Assests/Images/back.png')} style={styles.imgheader} />
-              </TouchableOpacity>
-            </View>
-          ),
           drawerIcon: () => (
             <View style={styles.imdbContainer}>
               <Image source={require('../Assests/Images/imdb.png')} style={styles.imdbImg} />
@@ -59,10 +52,9 @@ export default function DrawerTab() {
 
 const styles = StyleSheet.create({
   imgheader: {
-    height: 20,
-    width: 20,
+    height: 35,
+    width: 35,
     marginRight: 15,
-
   },
   imdbImg: {
     width: 30,

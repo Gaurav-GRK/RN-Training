@@ -1,57 +1,64 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import { FlatList } from 'react-native'
+import Modal from "react-native-modal";
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height
 const Imdb = ({ navigation }) => {
+  const [visible, setVisible] = useState(false)
+  const toggleModal = () => {
+    setVisible(!visible)
+  }
   const [movies, setMovies] = useState([
     {
       id: '1',
       name: 'Joker',
       imdb: 'Rating:9',
       src: require('../Assests/Images/joker.jpg'),
-      detail:'A mentally troubled stand-up comedian embarks on a downward spiral that leads to the creation of an iconic villain.',
-      otherDetail:'Arthur Fleck works as a clown and is an aspiring stand-up comic. He has mental health issues, part of which involves uncontrollable laughter. Times are tough and, due to his issues and occupation, Arthur has an even worse time than most. Over time these issues bear down on him, shaping his actions, making him ultimately take on the persona he is more known as...Joker.'
+      detail: 'A mentally troubled stand-up comedian embarks on a downward spiral that leads to the creation of an iconic villain.',
+      otherDetail: 'Arthur Fleck works as a clown and is an aspiring stand-up comic. He has mental health issues, part of which involves uncontrollable laughter. Times are tough and, due to his issues and occupation, Arthur has an even worse time than most. Over time these issues bear down on him, shaping his actions, making him ultimately take on the persona he is more known as...Joker.'
     },
     {
       id: '2',
       name: 'Pathan',
       imdb: 'Rating:8',
       src: require('../Assests/Images/pathan.jpg'),
-      detail:'An Indian spy takes on the leader of a group of mercenaries who have nefarious plans to target his homeland',
+      detail: 'An Indian spy takes on the leader of a group of mercenaries who have nefarious plans to target his homeland',
     },
     {
       id: '3',
       name: 'Avengers',
       imdb: 'Rating:9',
       src: require('../Assests/Images/avenger.jpg'),
-      detail:'After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos.',
+      detail: 'After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos.',
     },
     {
       id: '4',
       name: 'Avatar',
       imdb: 'Rating:9',
       src: require('../Assests/Images/Avatar.jpg'),
-      detail:'It is set in the mid-22nd century, when humans are colonizing Pandora, a lush habitable moon of a gas giant in the Alpha Centauri star system, in order to mine the valuable mineral unobtanium.',
+      detail: 'It is set in the mid-22nd century, when humans are colonizing Pandora, a lush habitable moon of a gas giant in the Alpha Centauri star system, in order to mine the valuable mineral unobtanium.',
     },
     {
       id: ' 5',
       name: 'Avatar2',
       imdb: 'Rating:9.2',
       src: require('../Assests/Images/Avatar.jpg'),
-      detail:'After repeated delays in the expected release schedule, Avatar: The Way of Water premiered in London on December 6, 2022, and was theatrically released in the United States on December 16, 2022.',
+      detail: 'After repeated delays in the expected release schedule, Avatar: The Way of Water premiered in London on December 6, 2022, and was theatrically released in the United States on December 16, 2022.',
     },
     {
       id: '6',
       name: 'Hero',
       imdb: 'Rating:5',
       src: require('../Assests/Images/Hero.jpg'),
-      detail:'Hero is a 2015 Indian Hindi-language romantic action film written and directed by Nikkhil Advani, co-written by Umesh Bist, and produced by Salman Khan ',
+      detail: 'Hero is a 2015 Indian Hindi-language romantic action film written and directed by Nikkhil Advani, co-written by Umesh Bist, and produced by Salman Khan ',
     },
     {
       id: '7',
       name: 'The Last of us',
       imdb: 'Rating:6',
       src: require('../Assests/Images/Lastus.jpg'),
-      detail:'After a global pandemic destroys civilization, a hardened survivor takes charge of a 14-year-old girl who may be humanitys last hope.',
+      detail: 'After a global pandemic destroys civilization, a hardened survivor takes charge of a 14-year-old girl who may be humanitys last hope.',
     },
     {
       id: '8',
@@ -160,10 +167,43 @@ const Imdb = ({ navigation }) => {
       src: require('../Assests/Images/Antman.jpg')
     }
   ])
+  const Filter = () => {
+    return (
+      <View style={styles.barIcon}>
+        <View>
+          <TouchableOpacity onPress={() => navigation.navigate('HomePage')}>
+            <Text style={styles.modalText}>
+              Top Movies
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.modalText}>
+              Latest Movies
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.modalText}>
+              Old Movies
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.modalText}>
+              Hindi Movies
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.modalText}>
+              English Movies
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
 
   const renderCell = ({ item }) => {
     return (
-      <TouchableOpacity onPress={() =>navigation.navigate('MovieDetails', {item})}>
+      <TouchableOpacity onPress={() => navigation.navigate('MovieDetails', { item })}>
         <View style={styles.itemContainer}>
           <Image source={item.src} style={{ height: 180, width: 120, marginTop: 25 }} />
           <Text style={styles.itemName}>
@@ -178,36 +218,99 @@ const Imdb = ({ navigation }) => {
   }
 
   return (
-    <FlatList
-      data={movies}
-      numColumns={3}
-      style={styles.gridView}
-      renderItem={renderCell}
-      keyExtractor={item => item.id}
-     />
+    <View>
+      <TouchableOpacity onPress={() => toggleModal()}>
+        <Image source={require('../Assests/Images/sorter.png')} style={styles.imgheader} />
+      </TouchableOpacity>
+      <Modal
+        onBackdropPress={() => setVisible(false)}
+        onBackButtonPress={() => setVisible(false)}
+        isVisible={visible}
+        swipeDirection='down'
+        onSwipeComplete={toggleModal}
+        style={styles.modal}
+      >
+        <View style={styles.modalContent}>
+          <View style={styles.center}>
+            {Filter()}
+          </View>
+        </View>
+      </Modal>
+
+      <FlatList
+        data={movies}
+        numColumns={3}
+        renderItem={renderCell}
+        keyExtractor={item => item.id}
+      />
+    </View>
   )
 }
 
 export default Imdb
 
 const styles = StyleSheet.create({
-  gridView: {
-    flex: 1,
-  },
   itemContainer: {
     alignItems: 'flex-start',
     padding: 11,
-    backgroundColor: 'black'
+
   },
   itemName: {
     fontSize: 16,
-    color: 'white',
+    color: 'black',
     fontWeight: '600',
     marginTop: 10
   },
   rating: {
     fontSize: 16,
-    color: 'white',
+    color: 'black',
     fontWeight: '600',
+  },
+  imgheader: {
+    height: 35,
+    width: 35,
+    alignSelf: 'flex-end',
+    marginRight: 10
+  },
+  modalbackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modalText: {
+    color: 'black',
+    fontSize: 20,
+    marginTop: 40,
+    borderBottomWidth:1,
+    alignSelf:'center',
+    
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end'
+  },
+  modal: {
+    justifyContent: 'flex-end',
+    margin: 0
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    paddingTop: 12,
+    paddingHorizontal: 12,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    minHeight: 400,
+    paddingBottom: 20
+  },
+  center: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  barIcon: {
+    width: 180,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: '#bbb'
   }
 })

@@ -1,4 +1,1 @@
-const LOGIN_TYPES ={
-    LOGIN_SUCCESS:'LOGIN_SUCCESS'
-};
-export default LOGIN_TYPES;
+export const LOGIN_SUCCESS='LOGIN_SUCCESS'

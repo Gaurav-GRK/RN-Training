@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import apiCall from '../Redux/ApiActionCreator'
+import { connect, useDispatch, useSelector } from 'react-redux';
+import ApiActionCreator from '../Redux/ApiActionCreator'
 import { myAxiosGetRequest } from './ApiScreen/Url';
 
-const ListDog = () => {
+const ListDog = ({data,ApiActionCreator}) => {
 
-  const dispatch = useDispatch();
+ 
   const listDogData = useSelector((state) => state.ApiReducer.data);
   const loading = useSelector((state) => state.ApiReducer.loading);
 
   useEffect(() => {
 
-    dispatch(apiCall());
+    ApiActionCreator();
 
   }, []);
   const renderList = ({ item }) => (
@@ -58,7 +58,7 @@ const ListDog = () => {
   );
 };
 
-export default ListDog;
+
 const styles = StyleSheet.create({
 
   container: {
@@ -117,3 +117,14 @@ const styles = StyleSheet.create({
     color: 'red'
   },
 })
+const mapStateToProps=(state)=>{
+  return{
+    data:state.data
+  }
+}
+const mapDisPatchToProps=(dispatch)=>{
+  return{
+    ApiActionCreator:()=> dispatch(ApiActionCreator())
+  }
+}
+export default connect(mapStateToProps,mapDisPatchToProps)(ListDog)

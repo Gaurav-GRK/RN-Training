@@ -1,12 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image, Alert } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../Navigation/Context'
-import { useDispatch } from 'react-redux'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { LoginAction } from '../../Redux/Login/LoginAction'
-function Login({ navigation,userEmail }) {
-    const dispatch=useDispatch()
+function Login({ navigation,userEmail,LoginAction }) {
+    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { login } = useContext(AuthContext)
@@ -14,9 +12,9 @@ function Login({ navigation,userEmail }) {
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test(String(email).toLowerCase())) {
             if (password.length > 0) {
-                dispatch(LoginAction(email, password, () => {
-                   {login()}
-                }))
+                LoginAction(email, password, () => {
+                   navigation.navigate('MpinLogin')
+                })
             } else {
                 Alert.alert('Please enter Password')
             }
@@ -126,7 +124,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#E6E6E6',
         width: 320,
         marginLeft: 15,
-        marginRight: 20
+        marginRight: 20,
+        color:'black'
     },
     email: {
         marginLeft: 16,
@@ -215,15 +214,22 @@ const styles = StyleSheet.create({
         color: 'black'
     }
 })
-export default Login
-/*const mapStateToProps=(state)=>{
+
+const mapStateToProps=(state)=>{
     return{
-        userEmail:state.data
+        first_name : state.Login.first_name,
+        last_name : state.Login.last_name,
+        userEmail : state.Login.email,
+        client:state.Login.client,
+        access_token:state.Login.access_token,
+        sucess : state.Login.sucess,
+        stateValue : state.Login.stateValue,
+        mpin_enabled : state.Login.mpin_enabled,
     }
 }
 const mapDisPatchToProps = (dispatch) => {
     return {
-        LoginAction: (email, password) => dispatch(LoginAction(email, password)),
+        LoginAction: (email, password,callback) => dispatch(LoginAction(email, password,callback)),
     }
 }
-export default connect(mapStateToProps,mapDisPatchToProps)(Login)*/
+export default connect(mapStateToProps,mapDisPatchToProps)(Login)
