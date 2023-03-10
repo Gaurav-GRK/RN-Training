@@ -11,8 +11,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const appReducers = combineReducers({
   Login: LoginReducer,
   mpinReducer: mpinReducer,
+  ApiReducer:ApiReducer,
   FilterReducer:FilterReducer,
-  ApiReducer:ApiReducer
+ 
 });
 
 const rootReducer = (state, action) => appReducers(state, action);

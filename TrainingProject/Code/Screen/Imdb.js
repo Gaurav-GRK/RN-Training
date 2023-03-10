@@ -2,8 +2,6 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions } from 'rea
 import React, { useState } from 'react'
 import { FlatList } from 'react-native'
 import Modal from "react-native-modal";
-const WIDTH = Dimensions.get('window').width;
-const HEIGHT = Dimensions.get('window').height
 const Imdb = ({ navigation }) => {
   const [visible, setVisible] = useState(false)
   const toggleModal = () => {
@@ -171,7 +169,7 @@ const Imdb = ({ navigation }) => {
     return (
       <View style={styles.barIcon}>
         <View>
-          <TouchableOpacity onPress={() => navigation.navigate('HomePage')}>
+          <TouchableOpacity onPress={() => navigation.navigate('TopMovies')}>
             <Text style={styles.modalText}>
               Top Movies
             </Text>

@@ -1,6 +1,6 @@
 import * as ActionType from './ActionTypes'
 const iniitialState={
-  data:''
+  StateList:null
 }
 
 const FilterReducer = (state = iniitialState, action) => {
@@ -8,7 +8,7 @@ const FilterReducer = (state = iniitialState, action) => {
       case ActionType.FILTER_SUCCESS:
           return {
               ...state,
-              data: action.payload,
+              StateList: action.payload  
           }
           
       default:

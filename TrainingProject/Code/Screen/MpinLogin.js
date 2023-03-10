@@ -12,7 +12,6 @@ const MpinLogin = ({ navigation, sucess, mpinLoginAction, resetLoginData, saveUs
     const [mpin2, setMpin2] = useState('');
     const [mpin3, setMpin3] = useState('');
     const [mpin4, setMpin4] = useState('');
-    const [isAccountActive, setAccountActive] = useState(false);
     const loginClicked = () => {
         const mpin = mpin1 + mpin2 + mpin3 + mpin4
         const headers = {
