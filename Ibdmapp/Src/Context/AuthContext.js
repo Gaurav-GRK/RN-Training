@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 import React, {Children, createContext, useState} from 'react';
-import { loginAction } from '../Login/LoginAction';
+import { loginAction } from '../Redux/Login/LoginAction';
 
 export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {

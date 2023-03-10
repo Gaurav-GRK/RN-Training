@@ -40,7 +40,7 @@ const Forgotpassword = ({ navigation }) => {
             </View>
             <TouchableOpacity
               style={styles.botton}
-              onPress={() =>navigation.navigate('DogsList1')}><Text
+              onPress={() =>navigation.navigate('MpinLogin')}><Text
               style={styles.bottonText}>Send</Text>
             </TouchableOpacity>
           </View>

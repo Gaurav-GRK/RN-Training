@@ -6,9 +6,10 @@
 /* eslint-disable prettier/prettier */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, Image} from 'react-native';
-import Home from '../../Src/Screen/Home';
+import Home from '../../Src/Screen/DogList3';
 import ImdbHomescreen from '../../Src/Screen/ImdbHomescreen';
 import List from '../../Src/Screen/List';
+import SortingList from '../../Src/Screen/SortingList';
 
 
 
@@ -80,6 +81,27 @@ function Bottomnavigation({route ,navigation}) {
                   borderColor: 'black',
                 }}
                 source={require('../../assets/TabbarIcons/Dogs.png')}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="SortingList"
+        component={SortingList}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Sorting List',
+          tabBarIcon: ({}) => (
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+              <Image
+                style={{
+                  width: 40,
+                  height: 25,
+                  alignContent: 'center',
+                  borderColor: 'black',
+                }}
+                source={require('../../assets/TabbarIcons/SortList.png')}
               />
             </View>
           ),

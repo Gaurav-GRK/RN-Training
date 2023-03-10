@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 import ACTION_TYPES from './ActionTypes.js';
 

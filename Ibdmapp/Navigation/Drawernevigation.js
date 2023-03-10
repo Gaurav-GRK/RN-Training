@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
@@ -13,7 +12,7 @@ import About from '../Src/Screen/About';
 import Profileuser from '../Src/Screen/Profileuser';
 import CustomDrawer from '../Src/Components/CustomDrawer';
 import Bottomnavigation from '../Navigation/Bottomnavigation/Bottomnavigation';
-import DogsList from '../Src/Screen/DogsList';
+import HomePage from '../Src/Screen/HomePage';
 
 
 
@@ -64,6 +63,21 @@ export default function Drawernevigation({ navigation }) {
       <Drawer.Screen
         name="About"
         component={About}
+        options={{
+          headerShown: false,
+          drawerActiveBackgroundColor: 'blue',
+          drawerActiveTintColor: 'pink',
+          drawerIcon: () => (
+            <Image
+              source={require('../assets/About.jpg')}
+              style={{ height: 30, width: 30 }}
+            />
+          ),
+        }}
+      />
+       <Drawer.Screen
+        name="Homepage"
+        component={HomePage}
         options={{
           headerShown: false,
           drawerActiveBackgroundColor: 'blue',

@@ -1,3 +1,5 @@
+/* eslint-disable keyword-spacing */
+/* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/self-closing-comp */
@@ -5,15 +7,29 @@
 
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React, { useContext } from 'react';
-
+import {useNavigation} from '@react-navigation/native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
 import { AuthContext } from '../Context/AuthContext';
+import { USER_STATUS_SUCCESS } from '../Redux/Login/LoginActionTypes';
+import {useDispatch, useSelector} from 'react-redux';
+
+
+
 
 const CustomDrawer = props => {
+  const nav = useNavigation();
   const { logout } = useContext(AuthContext);
+   const dispatch = useDispatch();
+   const logoutClicked = (userEmail,
+  access_token,
+  client,) => {
+           dispatch(logoutAction(access_token, client, userEmail, nav));
+        logout();
+  };
+  
   return (
     <>
       <DrawerContentScrollView
@@ -34,7 +50,7 @@ const CustomDrawer = props => {
         </View>
       </DrawerContentScrollView>
       <View>
-        <TouchableOpacity onPress={() => { logout(); }}>
+        <TouchableOpacity onPress={() => { logoutClicked()}}>
           <View style={{ flexDirection: 'row' }}>
             <Image
               source={require('../../assets/Logout.jpg')}
