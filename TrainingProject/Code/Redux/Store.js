@@ -8,12 +8,15 @@ import FilterReducer from './FilterApi/FilterReducer';
 import mpinReducer from './Mpin/MpinReducer';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import NotificationReducer from './Notification/NotificationReducer';
+import PickerReducer from './Picker/PickerReducer';
 const appReducers = combineReducers({
   Login: LoginReducer,
   mpinReducer: mpinReducer,
   ApiReducer:ApiReducer,
   FilterReducer:FilterReducer,
- 
+  NotificationReducer:NotificationReducer,
+  PickerReducer:PickerReducer
 });
 
 const rootReducer = (state, action) => appReducers(state, action);

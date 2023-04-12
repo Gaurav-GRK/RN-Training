@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'skyblue',
         flex: 1,
         alignItems: 'center',
-
     },
     container1: {
         backgroundColor: '#FFFFFF',

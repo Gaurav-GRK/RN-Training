@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as ActionType from './ActionTypes'
-export const stateList = (userEmail,client,access_token,callback)=>{
+export const stateList = (userEmail,client,access_token)=>{
   return function(dispatch){
     const headers ={
       uid: userEmail,

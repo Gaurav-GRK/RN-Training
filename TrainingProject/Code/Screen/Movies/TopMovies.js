@@ -13,6 +13,9 @@ function Sorting({ stateList, access_token, client, userEmail }) {
       <Text style={{color:'black'}}>
         {item.id}
       </Text>
+      <Text style={{color:'black'}}>
+        {item.value}
+      </Text>
     </View>
   )
   return (

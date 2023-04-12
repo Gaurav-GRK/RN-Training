@@ -1,8 +1,11 @@
-import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import { BackHandler, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import Modal from "react-native-modal";
+import { connect } from 'react-redux';
+import { toggleSideMenu } from '../Redux/Picker/Action';
 
-const HomePage = () => {
+
+const HomePage = ({ navigation, markData, toggleSideMenu, showSideMenu, }) => {
     const [show, setShow] = useState(false)
     const showList = () => {
         setShow(!show)
@@ -14,7 +17,7 @@ const HomePage = () => {
                 <Text style={styles.mainText}>
                     What Would you Like to do?
                 </Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('PostProjectScene')}>
                     <View style={styles.container4}>
                         <Image source={require('../Assests/Images/filemanager.png')} style={styles.imgfile} />
                         <Text style={styles.newProjectText}>
@@ -22,10 +25,9 @@ const HomePage = () => {
                         </Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ScreenC')}>
                     <View style={styles.container4}>
                         <Image source={require('../Assests/Images/Team.png')} style={styles.imgfile} />
-
                         <Text style={styles.newProjectText}>
                             Build a new Team
                         </Text>
@@ -82,7 +84,7 @@ const HomePage = () => {
                     </ImageBackground>
                 </TouchableOpacity>
                 <View style={styles.container2}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
                         <ImageBackground source={require('../Assests/Images/homeback.png')} style={styles.imgbackground}>
                             <View style={styles.container1}>
                                 <Image source={require('../Assests/Images/notifications.png')} style={styles.img} />
@@ -118,8 +120,40 @@ const HomePage = () => {
             </View>
         )
     }
+    const unreadCount = () => {
+        if (markData == undefined || markData == 0) {
+            return null;
+        } else {
+            return (
+                <View style={styles.notTopCount}>
+                    <Text style={styles.markData}>
+                        {markData}
+                    </Text>
+                </View>
+            );
+        }
+    };
+    const HeaderText = () => {
+        return (
+            <View style={styles.header}>
+                <TouchableOpacity style={styles.notification} onPress={() => navigation.navigate('Notification')}>
+                    <Image source={require('../Assests/Images/bellnot.png')} style={styles.notimg} />
+                    {unreadCount()}
+                </TouchableOpacity>
+            </View>
+
+        )
+    };
     return (
         <View>
+            <View style={styles.container5}>
+                <TouchableOpacity onPress={() => { navigation.navigate('DrawerView'), toggleSideMenu(!showSideMenu) }}>
+                    <Image source={require('../Assests/Images/hamburger.png')}
+                        style={styles.backImg}
+                    />
+                </TouchableOpacity>
+                {HeaderText()}
+            </View>
             <Text style={styles.name}>
                 Hello,Varun
             </Text>
@@ -130,9 +164,35 @@ const HomePage = () => {
     )
 }
 
-export default HomePage
-
 const styles = StyleSheet.create({
+    markData: {
+        fontSize: 9,
+        color: '#ffffff'
+    },
+    notTopCount: {
+        width: 15,
+        height: 15,
+        backgroundColor: '#c5b15d',
+        right: 0,
+        borderRadius: 35,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 120,
+        bottom: 20
+    },
+    notification: {
+        alignSelf: 'center',
+        marginHorizontal: 230
+    },
+    notimg: {
+        height: 20,
+        width: 20,
+        marginLeft: 110,
+        top: 6
+    },
+    header: {
+        flexDirection: 'row',
+    },
     name: {
         color: 'green',
         fontSize: 20,
@@ -245,11 +305,54 @@ const styles = StyleSheet.create({
         marginLeft: 40,
         marginTop: 8
     },
-    barIcon:{
+    barIcon: {
         width: 70,
         height: 5,
         borderRadius: 3,
         backgroundColor: '#bbb',
-        alignSelf:"center"
-    }
+        alignSelf: "center"
+    },
+    container5: {
+        flexDirection: 'row',
+        backgroundColor: '#3B4C5C',
+    },
+    backImg: {
+        width: 25,
+        height: 20,
+        marginLeft: 15,
+        marginTop: 17,
+        marginBottom: 15
+    },
+    notText: {
+        color: 'white',
+        alignSelf: 'center',
+        marginBottom: 16,
+        fontWeight: '500',
+        fontSize: 17,
+        marginLeft: 30,
+        marginTop: 16
+    },
 })
+const mapStateToProps = (state) => {
+    return {
+        markData: state.NotificationReducer.markData,
+        showSideMenu: state.PickerReducer.showSideMenu,
+        data: state.NotificationReducer.data,
+        access_token: state.Login.access_token,
+        userEmail: state.Login.email,
+        client: state.Login.client,
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        mpinLoginAction: (mpin) => dispatch(mpinLoginAction(mpin)),
+        PutNotificationaction: (userEmail, access_token, client, ids) => dispatch(PutNotificationaction(userEmail, access_token, client, ids)),
+        toggleHomeAddSheet: (show, Blur) =>
+            dispatch(toggleHomeAddSheet(show, Blur)),
+        toggleSideMenu: (show, Blur) => dispatch(toggleSideMenu(show, Blur))
+    }
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(HomePage)

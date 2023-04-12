@@ -10,15 +10,10 @@ import HomePage from './HomePage';
 
 const Drawer = createDrawerNavigator();
 
-export default function DrawerTab() {
+export default function DrawerTab({navigation}) {
   return (
-
     <Drawer.Navigator drawerContent={props => <CustomDrawer{...props} />}>
-      <Drawer.Screen name='Home' component={HomePage} options={{
-        headerTitleAlign: 'center',
-        headerTitleStyle: { fontSize: 25, color: '#3B4C5C' },
-        headerStyle: { backgroundColor: '#3B4C5C' },
-        headerTintColor: 'white',
+      <Drawer.Screen name='Home' component={HomePage} options={{headerShown:false,
         drawerIcon: () => (
           <View style={styles.imdbContainer}>
             <Image source={require('../Assests/Images/imdb.png')} style={styles.imdbImg} />
