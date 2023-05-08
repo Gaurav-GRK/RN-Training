@@ -19,6 +19,9 @@ import ScreenC from '../Screen/ScreenC';
 import PostProjectScene from '../Screen/PostProject/PostProjectScene';
 import PostProjectScene2 from '../Screen/PostProject/PostProjectScene2';
 import PostProjectScene3 from '../Screen/PostProject/PostProjectScene3';
+import PostProjectScene4 from '../Screen/PostProject/PostProjectScene4';
+import PostProjectSuccess from '../Screen/PostProject/PostProjectSuccess';
+import ProjectDashboardScreen from '../Screen/PostProject/ProjectDashboardScreen';
 
 
 
@@ -44,6 +47,9 @@ export default function PostLogoutScreens() {
       <Stack.Screen name='PostProjectScene' component={PostProjectScene} />
       <Stack.Screen name='PostProjectScene2' component={PostProjectScene2} />
       <Stack.Screen name='PostProjectScene3' component={PostProjectScene3} />
+      <Stack.Screen name='PostProjectScene4' component={PostProjectScene4} />
+      <Stack.Screen name='PostProjectSuccess' component={PostProjectSuccess} />
+      <Stack.Screen name='ProjectDashboardScreen' component={ProjectDashboardScreen} />
     </Stack.Navigator>
   )
 }

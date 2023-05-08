@@ -1,10 +1,28 @@
 import { Alert, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
+import { applicationPeriodListAction ,
+postProjectAction,
+projectDetailAction} from '../../Redux/FilterApi/Action';
 import CustomPickerComp from '../../Components/CustomPickerComp';
 import { toggleCustomPicker } from '../../Redux/Picker/Action';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-const PostProjectScene2 = ({ navigation, clioMatters, toggleCustomPicker, showingCustomPicker }) => {
+const PostProjectScene2 = ({
+  navigation,
+  isFromMenu,
+  toggleCustomPicker,
+  showingCustomPicker,
+  applicationPeriodListAction,
+  postProjectAction,
+  access_token,
+  client,
+  userEmail,
+  applicationPeriod,
+  postProjectDetail,
+  clioMatters,
+  showProject,
+  clioMember
+}) => {
   const [selection, setSelection] = useState();
   const [description, setDescription] = useState('');
   const [editingTitle, setEditingTitle] = useState(null)
@@ -14,8 +32,50 @@ const PostProjectScene2 = ({ navigation, clioMatters, toggleCustomPicker, showin
   const [exportTimeClio, setexportTimeClio] = useState(true);
   const [selectedRelatedClio, setSelectedRelatedClio] = useState(false);
   const [applicableLaw, setApplicableLaw] = useState('');
-  const renderLawsContainer = (title, value, placeholder, onChange) => {
+  let FormData = require('form-data');
+  useEffect(() => {
+    applicationPeriodListAction(userEmail, access_token, client);
+    !!showProject && adaptData();
+  }, []);
+  useEffect(() => {
+		adaptData();
+	}, [showProject])
+  useEffect(() => {
+    postProjectDetail && refreshData()
+  }, [])
+  
+  const refreshData = (step) => {
+    projectDetailAction(userEmail, access_token, client, postProjectDetail?.id ?? null, false, step ?? 'details', (data, success) => {
+			console.log('Project refreshed');
+		})
+  }
+  const adaptData = () => {
+   // !!showProject.narrative && setDescription(showProject.narrative);
+   //!!showProject.details && setDetail(showProject.details);
+   // !!showProject.state && setApplicableLaw(showProject.state);
+   // !!showProject.create_clio_task &&
+    //  setCreateClio(showProject.create_clio_task);
+    //!!showProject.clio_sync_time_entries &&
+   //  setexportTimeClio(showProject.clio_sync_time_entries);
+  // !!showProject.clio_sync_documents &&
+     //setexportDocumentClio(showProject.clio_sync_documents);
+    !!showProject?.clio_matter_id &&  preselectClioMatter(showProject.clio_matter_id)
+  };
 
+  const preselectClioMatter = (id) => {
+    const pickerOption = getPreselectPickerOption(clioMatters, id);
+    if (!!pickerOption && pickerOption?.length > 0) {
+          setSelectedRelatedClio(pickerOption[0])
+    }
+  }
+
+  const getPreselectPickerOption = (array, value) => {
+		return array.filter(data => {
+			return data.value + '' === value;
+		});
+	};
+  const renderLawsContainer = (title, value, placeholder, onChange) => {
+    
     return (
       <>
         <Text style={styles.textTitle}>{title}</Text>
@@ -172,12 +232,24 @@ const PostProjectScene2 = ({ navigation, clioMatters, toggleCustomPicker, showin
       <TouchableOpacity
         style={styles.nextContainer}
         onPress={() => {
-          if (isValid()) 
-           {
-              navigation.navigate('PostProjectScene3');
-            } else {
-              Alert.alert(data, '', [{text: 'OK'}]);
-            }
+          if (isValid()) {
+            let data = getRequestBody(false);
+            postProjectAction(
+              userEmail,
+              access_token,
+              client,
+              data,
+              {},
+              (data,success) => {
+                console.log('callback received ' + success + data);
+                if (success) {
+                  navigation.navigate('PostProjectScene3', {showProject: showProject});
+                } else if (!!data) {
+                  Alert.alert(data, '', [{text: 'OK'}]);
+                }
+              },
+            );
+          }
         }}>
         <Text style={styles.next}>NEXT</Text>
       </TouchableOpacity>
@@ -203,10 +275,48 @@ const PostProjectScene2 = ({ navigation, clioMatters, toggleCustomPicker, showin
       return '';
     }
 	}
+  const getRequestBody = isSave => {
+    let data = new FormData();
+    data.append('project[created_method]', 'store');
+    data.append('project[target_step_cursor]', isSave ? 'save_as_draft' : 'next');
+    data.append('project[narrative]', description);
+    data.append('project[details]', detail);
+    data.append('project[state]', applicableLaw);
+    data.append('id', 'details');
+    if (!!clioMatters) {
+      data.append('project[create_clio_task]', !!createClio ? '1' : '0')
+      data.append('project[clio_sync_time_entries]', !!exportTimeClio ? '1' : '0')
+      data.append('project[clio_sync_documents]', !!exportDocumentClio ? '1' : '0')
+      data.append('project[clio_matter_id]', !!selectedRelatedClio?.value ? selectedRelatedClio?.value : '')
+    }
+    return data;
+  };
   const renderSaveButton = () => {
     return (
       <TouchableOpacity
-        style={styles.saveContainer}>
+        style={styles.saveContainer}
+        onPress={() => {
+          if (isValid()) {
+            let data = getRequestBody(true);
+            postProjectAction(
+              userEmail,
+              access_token,
+              client,
+              data,
+              {},
+              ( data,success) => {
+                if (success) {
+                  Alert.alert('Draft is saved successfully!!', '', [
+                    {text: 'OK'},
+                  ]);
+                  // navigation.navigate('PostProjectScene3');
+                } else if (!!data) {
+                  Alert.alert(data, '', [{text: 'OK'}]);
+                }
+              },
+            );
+          }
+        }}>
         <Text style={styles.save}>
           SAVE AS DRAFT
         </Text>
@@ -237,7 +347,7 @@ const PostProjectScene2 = ({ navigation, clioMatters, toggleCustomPicker, showin
               setApplicableLaw(event);
             },
           )}
-          {renderClioContainer()}
+          {!!clioMember &&renderClioContainer()}
           {renderNextButton()}
         </View>
         {renderSaveButton()}
@@ -386,12 +496,25 @@ const mapStateToProps = state => {
     access_token: state.Login.access_token,
     client: state.Login.client,
     userEmail: state.Login.email,
+    applicationPeriod: state.FilterReducer.applicationPeriod,
+    postProjectDetail: state.FilterReducer.postProjectDetail,
+    clioMatters: state.FilterReducer.clioMatters,
+    clioMember: state.Login.clioMember,
+    showProject: state.FilterReducer.showProject
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     toggleCustomPicker: (show, Blur) =>
       dispatch(toggleCustomPicker(show, Blur)),
-  };
+      applicationPeriodListAction: (userEmail, access_token, client) =>
+      dispatch(applicationPeriodListAction(userEmail, access_token, client)),
+      postProjectAction: (userEmail, access_token, client, formdata, params, callback) =>
+      dispatch(
+        postProjectAction(userEmail, access_token, client, formdata, params, callback),
+      ),
+    projectDetailAction: (userEmail, access_token, client, id, isNew, step, callback) =>
+			dispatch(projectDetailAction(userEmail, access_token, client, id, isNew, step, callback)),
+    };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PostProjectScene2);

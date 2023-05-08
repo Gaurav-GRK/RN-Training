@@ -1,4 +1,4 @@
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { saveUserDetail } from '../Redux/Login/LoginAction';
 import axios from 'axios';
@@ -59,25 +59,33 @@ const MpinLogin = ({ navigation, sucess, mpinLoginAction, resetLoginData, saveUs
                         style={styles.mpinTextbox}
                         onChangeText={(text) => setMpin1(text)}
                         maxLength={1}
+                        placeholder=''
                         keyboardType='number-pad'
+                        returnKeyType='done'
                     />
                     <TextInput
                         style={styles.mpinTextbox}
                         onChangeText={(text) => setMpin2(text)}
                         maxLength={1}
                         keyboardType='number-pad'
+                        placeholder=''
+                        returnKeyType='done'
                     />
                     <TextInput
                         style={styles.mpinTextbox}
                         onChangeText={(text) => setMpin3(text)}
                         maxLength={1}
                         keyboardType='number-pad'
+                        placeholder=''
+                        returnKeyType='done'
                     />
                     <TextInput
                         style={styles.mpinTextbox}
                         onChangeText={(text) => setMpin4(text)}
                         maxLength={1}
                         keyboardType='number-pad'
+                        placeholder=''
+                        returnKeyType='done'
                     />
                 </View>
                 <Text style={styles.forgot}>
@@ -100,10 +108,13 @@ const styles = StyleSheet.create({
 
     },
     container1: {
-        backgroundColor: '#FFFFFF',
-        marginTop: 200,
-        borderRadius: 10,
-        width: 350
+        backgroundColor: '#ffffff',
+        width: Dimensions.get('screen').width - 40,
+        marginTop: 130,
+        // marginBottom : 130,
+        marginLeft: 20,
+        marginRight: 20,
+        borderRadius: 16
 
     },
     mpinText: {

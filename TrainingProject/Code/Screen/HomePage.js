@@ -35,7 +35,7 @@ const HomePage = ({ navigation, markData, toggleSideMenu, showSideMenu, }) => {
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={styles.container4}>
-                        <Image source={require('../Assests/Images/hiring.png')} style={styles.imgfile} />
+                        <Image source={require('../Assests/Images/Team.png')} style={styles.imgfile} />
                         <View>
                             <Text style={styles.HireText1}>
                                 Hire a Subscription

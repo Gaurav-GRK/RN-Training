@@ -1,10 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image, Alert } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image, Alert, Dimensions } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../Navigation/Context'
 import { connect } from 'react-redux'
 import { LoginAction } from '../../Redux/Login/LoginAction'
-function Login({ navigation,userEmail,LoginAction }) {
-    
+function Login({ navigation, userEmail, LoginAction }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { login } = useContext(AuthContext)
@@ -13,7 +12,7 @@ function Login({ navigation,userEmail,LoginAction }) {
         if (re.test(String(email).toLowerCase())) {
             if (password.length > 0) {
                 LoginAction(email, password, () => {
-                   navigation.navigate('MpinLogin')
+                    navigation.navigate('MpinLogin')
                 })
             } else {
                 Alert.alert('Please enter Password')
@@ -101,9 +100,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     container1: {
-        backgroundColor: '#FFFFFF',
-        marginTop: 90,
-        borderRadius: 10,
+        backgroundColor: '#ffffff',
+        width: Dimensions.get('screen').width - 40,
+        marginTop: 130,
+        // marginBottom : 130,
+        marginLeft: 20,
+        marginRight: 20,
+        borderRadius: 16,
+        minHeight: 101
 
     },
     log: {
@@ -116,19 +120,19 @@ const styles = StyleSheet.create({
 
     },
     input: {
-        height: 45,
-        margin: 5,
-        padding: 12,
-        borderRadius: 4,
-        backgroundColor: '#E6E6E6',
-        width: 320,
-        marginLeft: 15,
-        marginRight: 20,
-        color:'black'
+        height: 38,
+        borderWidth: 1,
+        padding: 10,
+        borderColor: '#e6e6e6',
+        backgroundColor: '#f7f7f7',
+        marginTop: 13,
+        marginLeft: 30,
+        marginRight: 30,
+        color: '#5e5e5e'
     },
     email: {
-        marginLeft: 16,
-        color: 'black'
+        marginLeft: 30,
+        color: 'black', marginTop: 4
     },
     btn: {
         height: 56,
@@ -214,21 +218,21 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps=(state)=>{
-    return{
-        first_name : state.Login.first_name,
-        last_name : state.Login.last_name,
-        userEmail : state.Login.email,
-        client:state.Login.client,
-        access_token:state.Login.access_token,
-        sucess : state.Login.sucess,
-        stateValue : state.Login.stateValue,
-        mpin_enabled : state.Login.mpin_enabled,
+const mapStateToProps = (state) => {
+    return {
+        first_name: state.Login.first_name,
+        last_name: state.Login.last_name,
+        userEmail: state.Login.email,
+        client: state.Login.client,
+        access_token: state.Login.access_token,
+        sucess: state.Login.sucess,
+        stateValue: state.Login.stateValue,
+        mpin_enabled: state.Login.mpin_enabled,
     }
 }
 const mapDisPatchToProps = (dispatch) => {
     return {
-        LoginAction: (email, password,callback) => dispatch(LoginAction(email, password,callback)),
+        LoginAction: (email, password, callback) => dispatch(LoginAction(email, password, callback)),
     }
 }
-export default connect(mapStateToProps,mapDisPatchToProps)(Login)
+export default connect(mapStateToProps, mapDisPatchToProps)(Login)
